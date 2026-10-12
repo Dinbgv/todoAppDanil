@@ -1,0 +1,24 @@
+
+# Use postgres/example user/password credentials
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: tasks_postgres
+    environment:
+      POSTGRES_DB: tasksbd
+      POSTGRES_USER: tasksuser
+      POSTGRES_PASSWORD: taskspass
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:
+
+
+  
